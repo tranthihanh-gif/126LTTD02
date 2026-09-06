@@ -1,0 +1,171 @@
+data class Student(
+    var studentId: String,
+    var fullName: String,
+    var age: Int,
+    var major: String,
+    var gpa: Double
+)
+
+fun main() {
+
+    val students = mutableListOf(
+        Student("SV001", "Tran Thi Hanh", 20, "CNTT", 9.5),
+        Student("SV002", "Tran Thi Giang Huong", 21, "CNTT", 9.2),
+        Student("SV003", "Nguyen Anh Long", 22, "SPCN", 7.4),
+        Student("SV004", "Pham Hong Quoc", 20, "CNTT", 4.8),
+        Student("SV005", "Huynh Van Hau", 20, "SPCN", 6.9)
+    )
+    var trennam= 0
+
+    for (student in students) {
+        if (student.gpa >= 8.0) {
+            trennam++
+        }
+    }
+
+    println("So sinh vien co GPA >= 8.0: $trennam")
+
+    var duoinam = 0
+
+    for (student in students) {
+        if (student.gpa < 5.0) {
+            duoinam++
+        }
+    }
+
+    println("So sinh vien co GPA < 5.0: $duoinam")
+
+    
+var tong = 0.0
+for (student in students) {
+    if (student.major == "CNTT") {
+        tong = tong + student.gpa
+    }
+}
+
+val trungBinh = tong / 3
+
+println("GPA trung binh nganh CNTT: $trungBinh")
+
+
+    var GPAcaonhat = students[0]
+
+    for (student in students) {
+        if (student.gpa > GPAcaonhat.gpa) {
+            GPAcaonhat = student
+        }
+    }
+
+    println("Sinh vien co GPA cao nhat: ${GPAcaonhat.fullName}")
+    println("GPA: ${GPAcaonhat.gpa}")
+
+
+    var tuoi = students[0]
+
+    for (student in students) {
+        if (student.age > tuoi.age) {
+           tuoi = student
+        }
+    }
+    println("Sinh vien lon tuoi nhat: ${tuoi.fullName}")
+    println("Tuoi: ${tuoi.age}")
+
+
+    println("Sinh vien co GPA tu 7.0 den 8.5:")
+
+    for (student in students) {
+        if (student.gpa >= 7.0 && student.gpa <= 8.5) {
+            println("${student.fullName} - GPA: ${student.gpa}")
+        }
+    }
+
+
+    println("Sinh vien nganh CNTT:")
+
+    for (student in students) {
+        if (student.major == "CNTT") {
+            println("${student.fullName} - GPA: ${student.gpa}")
+        }
+    }
+
+
+    val timten = "Van"
+
+    println("Sinh vien co ten chua '$timten':")
+
+    for (student in students) {
+        if (student.fullName.contains(timten, ignoreCase = true)) {
+            println(student.fullName)
+        }
+    }
+
+
+  
+    for (i in 0 until students.size - 1) {
+
+        for (j in 0 until students.size - 1 - i) {
+
+            if (students[j].gpa < students[j + 1].gpa) {
+
+                val temp = students[j]
+                students[j] = students[j + 1]
+                students[j + 1] = temp
+            }
+        }
+    }
+
+    println("Danh sach sap xep GPA giam dan:")
+
+    for (student in students) {
+        println("${student.fullName} - ${student.gpa}")
+    }
+
+    println("3 sinh vien co GPA cao nhat:")
+
+    for (i in 0 until 3) {
+        println("${i + 1}. ${students[i].fullName} - ${students[i].gpa}")
+    }
+
+
+  
+    for (i in 0 until students.size - 1) {
+
+        for (j in 0 until students.size - 1 - i) {
+
+            if (students[j].age > students[j + 1].age) {
+
+                val temp = students[j]
+                students[j] = students[j + 1]
+                students[j + 1] = temp
+            }
+        }
+    }
+
+    println("Danh sach sap xep theo tuoi:")
+
+    for (student in students) {
+        println("${student.fullName} - ${student.age} tuoi")
+    }
+
+
+
+    for (i in 0 until students.size - 1) {
+
+        for (j in 0 until students.size - 1 - i) {
+
+            if (students[j].fullName.lowercase() >
+                students[j + 1].fullName.lowercase()) {
+
+                val temp = students[j]
+                students[j] = students[j + 1]
+                students[j + 1] = temp
+            }
+        }
+    }
+
+    println("Danh sach sap xep theo ten:")
+
+    for (student in students) {
+        println(student.fullName)
+    }
+}
